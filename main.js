@@ -26,7 +26,7 @@ const render = function(){
   todoList.textContent = '';
   todoCompleted.textContent = '';
 
-  todoData.forEach(function(item){
+  todoData.forEach(function(item, index){
     const li = document.createElement('li');
     li.classList.add('todo-item');
     li.innerHTML = '<span class="text-todo">' + item.value + '</span>' +
@@ -42,10 +42,18 @@ const render = function(){
     }
     
     const todoComplete = li.querySelector('.todo-complete');
-    todoComplete.addEventListener('click', function(){
-      item.completed = !item.completed;
-      render();
+                      todoComplete.addEventListener('click', function(){
+                        item.completed = !item.completed;
+                        render();
     });
+    const TodoRemove = li.querySelector('.todo-remove');
+                  TodoRemove.addEventListener('click', function(){
+                    li.remove();
+                    todoData.splice(index, 1);
+                    localStorage.setItem("todoData", JSON.stringify(todoData));
+                    render();
+              });
+
     localStorage.setItem("todoData", JSON.stringify(todoData));
   });
 };
@@ -57,14 +65,14 @@ todoControl.addEventListener('submit', function(event){
     value: headerInput.value,
     completed: false
   };
-  todoData.push(newTodo);
+  // todoData.push(newTodo);
    if (headerInput.value === '') {
           todoData.pull(newTodo);
         } else {
           todoData.push(newTodo);
         }
-        // headerInput.value = '';
   render();
+  headerInput.value = '';
 });
 
 render();
