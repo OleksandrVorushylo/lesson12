@@ -66,8 +66,8 @@ todoControl.addEventListener('submit', function(event){
     completed: false
   };
   // todoData.push(newTodo);
-   if (headerInput.value === '') {
-          todoData.pull(newTodo);
+   if (headerInput.value === '' || headerInput.value === ' ') {
+          // todoData.pull(newTodo);
         } else {
           todoData.push(newTodo);
         }
