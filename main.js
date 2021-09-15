@@ -44,7 +44,7 @@ class ToDo {
 		event.preventDefault();
 		
 		if (this.input.value === '') {
-			alert('Пустую строку добавить нельзя');
+			alert('Пустую строку добавить нельзя, напишите что нибудь!');
 		} else {
 			if (this.input.value.trim()) {
 			const newTodo = {
